@@ -24,6 +24,26 @@ describe 'user register a player' do
     expect(page).to have_field('Data de nascimento')
     expect(page).to have_field('Nacionalidade')
 
-    expext(page).to have_button('Criar Ator')
+    expect(page).to have_button('Criar Ator')
+  end
+
+  it 'user can add a new actor with success' do
+    user = User.create!(email: 'example@example.com', password: '1212121232323')
+
+    login_as(user)
+
+    visit root_path
+
+    within 'nav' do
+      click_on 'Novo Ator'
+    end
+
+    fill_in('Nome', with: 'Antonio Bandeiras')
+    fill_in('Nacionalidade', with: 'Argentino')
+    fill_in('Data de nascimento', with: '12/12/1950')
+
+    click_on 'Criar Ator'
+
+    expect(page).to have_content('Ator ou Atriz adicionado com sucesso.')
   end
 end
