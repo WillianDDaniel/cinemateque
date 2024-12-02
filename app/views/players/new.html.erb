@@ -1,0 +1,22 @@
+<h1>Cadastrar novo Ator ou Atriz</h1>
+
+<%= form_with(model: @player) do |f| %>
+
+  <div >
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "rounded-sm" %>
+  </div>
+
+  <div >
+    <%= f.label :nacionality %>
+    <%= f.text_field :nacionality, class: "rounded-sm" %>
+  </div>
+
+  <div >
+    <%= f.label :birth_date %>
+    <%= f.date_field :birth_date, class: "rounded-sm" %>
+  </div>
+
+  <%= f.submit %>
+
+<% end %>
