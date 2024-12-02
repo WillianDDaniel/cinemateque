@@ -10,10 +10,14 @@ class PlayersController < ApplicationController
       flash[:notice] = 'Ator ou Atriz adicionado com sucesso.'
       redirect_to root_path
     else
-      flash.now[:alert] = 'Ator ou Atriz adicionado com sucesso.'
-
+      flash.now[:alert] = 'Erro ao adicionar Ator ou Atriz.'
+      @player.valid?
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @player = Player.find_by(id: params[:id])
   end
 
   private

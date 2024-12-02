@@ -46,4 +46,24 @@ describe 'user register a player' do
 
     expect(page).to have_content('Ator ou Atriz adicionado com sucesso.')
   end
+
+  it 'user cannot add player with blank fields' do
+    user = User.create!(email: 'example@example.com', password: '1212121232323')
+
+    login_as(user)
+
+    visit root_path
+
+    within 'nav' do
+      click_on 'Novo Ator'
+    end
+
+    fill_in('Nome', with: '')
+    fill_in('Nacionalidade', with: '')
+    fill_in('Data de nascimento', with: '')
+
+    click_on 'Criar Ator'
+
+    expect(page).to have_content('Erro ao adicionar Ator ou Atriz.')
+  end
 end

@@ -1,0 +1,8 @@
+<h1>Detalhes do Ator ou Atriz</h1>
+
+Nome: <%= @player.name%>
+Nacionalidade: <%= @player.nacionality%>
+Data de nascimento: <%= l(@player.birth_date)%>
+
+<%= link_to 'adicionar um novo papel', new_player_character_path(@player) %>
+
